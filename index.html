@@ -1,169 +1,148 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Para Sheila</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carta para Sheila</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),
-            url('29bd065d4e264a9c9a19abb14b874471.jpg') no-repeat center center fixed;
-background-size: cover;
-
-      color: #333;
+      font-family: font-family: 'Merriweather', serif;
+      background: url('IMG_20250713_235846.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #0a0107ea;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    .container {
-      max-width: 900px;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-
-    h1 {
-      font-size: 32px;
-      color: #8e4c74;
+    #inicio {
+      position: absolute;
+      background: rgba(255, 243, 230, 0.95);
+      border: 2px solid #e8d2c0;
+      padding: 30px 40px;
+      border-radius: 15px;
       text-align: center;
-      margin-bottom: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      transition: opacity 1s ease;
+      max-width: 90vw;
     }
 
-    .verse {
-      font-size: 20px;
-      font-style: italic;
-      text-align: center;
-      margin: 20px 0;
-      padding: 10px;
-      background-color: #f3e5f5;
-      border-left: 5px solid #8e44ad;
-      animation: fadeIn 2s ease-out;
+    #inicio h1 {
+      margin-bottom: 20px;
+      font-family: 'Courier New', monospace;
     }
 
-    .message {
+    #inicio button {
+      padding: 10px 20px;
       font-size: 18px;
-      line-height: 1.7;
-      margin-top: 20px;
-      white-space: pre-line;
-      border-top: 1px dashed #ccc;
-      padding-top: 20px;
-      animation: fadeInText 2s ease-in;
+      background: #d9a7c7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #inicio button:hover {
+      background: #b97aa4;
+    }
+
+    #carta {
+     font-size: 18px;
+      display: none;
+      max-width: 700px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
+      line-height: 1.8;
+      overflow-y: auto;
+      max-height: 90vh;
     }
 
     .assinatura {
       margin-top: 30px;
-      font-style: italic;
+      font-family: 'Brush Script MT', cursive;
+      font-size: 28px;
       text-align: right;
-      color: #555;
-      opacity: 0;
-      animation: fadeIn 2s ease-out 4s forwards;
     }
 
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(10px); }
-      100% { opacity: 1; transform: translateY(0); }
+    blockquote {
+      margin-top: 30px;
+      font-style: italic;
+      color: #f028ae;
+      text-align: center;
+      border-left: 3px solid #d9a7c7;
+      padding-left: 15px;
     }
 
-    @keyframes fadeInText {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .audio-control {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px 15px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 14px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    @media (max-width: 600px) {
+      #carta, #inicio {
+        margin: 20px;
+        padding: 25px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="audio-control" onclick="toggleMusic()">
-    ⏸ Pausar música
-  </div>
+<!-- Música (opcional, adicione um link válido se desejar) -->
+<audio id="musica" loop>
+  <source src="Turning Page - Sleeping At Last - Violin cover by Daniel Jang(MP3_160K).mp3" type="audio/mpeg">
+  Seu navegador não suporta áudio HTML.
+</audio>
 
-  <div class="container">
-    <h1>Homenagem para Sheila</h1>
+<div id="inicio">
+  <h1>✨ Clique para abrir sua carta ✨</h1>
+  <button onclick="abrirCarta()">Abrir</button>
+</div>
 
-    <div class="verse">
-      “Em verdade, em verdade vos digo que tudo quanto pedirdes ao Pai, em meu nome, Ele vo-lo concederá.”<br>– João 16:23
-    </div>
+<div id="carta">
+<h1>Feliz Aniversário, Sheila</h1>
+  <p>Querida Sheila,</p>
 
-    <div class="message" id="typed-text">
-      <!-- Texto aparecerá aqui com efeito de digitação -->
-    </div>
+  <p>Hoje é o seu dia.  
+  E antes de qualquer coisa, eu quero te desejar um feliz aniversário! 🎉</p>
 
-    <div class="assinatura" id="signature">
-      Feliz vida.<br>
-      Com carinho,<br>
-      Isaque
-    </div>
-  </div>
+  <p>Que os seus 30 (shhh) anos sejam como você: cheios de luz, leveza, verdade e encanto. Que esse novo ciclo venha trazendo paz nos detalhes, alegria nos encontros, fé renovada e sonhos que te façam sorrir com os olhos. Você merece o melhor da vida — porque o que você entrega ao mundo é raro.</p>
 
-  <!-- Música de fundo -->
-  <audio id="bg-music" autoplay loop>
-    <source src="Parabéns pra vc no melhor ritmo 🎷(MP3_160K).mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
+  <p>E falando em raridade…</p>
 
-  <script>
-    const texto = `Com amor e carinho, te dedico essa homenagem.
+  <p>Sei que pode parecer estranho, mas desde a primeira vez que te vi, mesmo sem te conhecer, algo me dizia que havia algo especial em você. Uma sensação que eu não sabia explicar, mas que me tocou de um jeito profundo.</p>
 
-Hoje é dia de celebrar a tua vida — ou melhor, essa caminhada linda que Deus tem conduzido com tanto propósito. E quanto à idade... ops, quase falei! Kkk. Vamos fingir que ainda não chegou nos trinta, né? Mas a verdade é que chegou sim — e chegou lindamente. Com maturidade, graça e um brilho que você carrega de forma única.
+  <p>E depois que te conheci — mesmo que pouco — essa certeza só cresceu. Em meio a tantos caminhos cruzados, entre tantas pessoas, eu tive o privilégio de encontrar você.</p>
 
-É bonito ver como você é centrada, doce, dedicada no que faz e firme naquilo em que acredita. A leveza com que lida com a vida inspira — e a fé que te guia revela uma força silenciosa que não grita, mas move.
+  <p>Fui conquistado pela sua essência. Pelo seu sorriso perfeito. Pela sua leveza. Pela sua voz doce que tanto me encanta e faz o tempo desacelerar quando fala comigo.(kkkk,foco,Isaque,foco...)</p>
 
-Sheila, que esses 30 (opa, falei! rsrs) venham recheados de tudo o que há de melhor: paz que acalma, amor que sustenta, pessoas que somam e coragem para seguir sendo exatamente quem você é — com a doçura que encanta e a força que sustenta.
+  <p>Não sei como, mas tudo em mim respira melhor quando você está por perto.(ops...)</p>
 
-Que esse seu sorriso lindo e encantador continue se apresentando todos os dias. Que nem o tempo, nem as adversidades tirem de você a alegria, nem apaguem aquilo que há de mais bonito em você — aquilo que brilha, mesmo sem esforço. Que o som suave da tua voz, que tanto me toca, permaneça ecoando com graça... até a eternidade.
+  <p>Eu sei… pode parecer exagero. Mas tem gente que marca a gente só por existir. E você é assim. Tem algo em você que simplesmente toca — e fica.</p>
 
-Saiba que, desde a primeira vez em que te vi — mesmo sem te conhecer, mesmo sem entender — algo em você já me despertou admiração... e talvez um pouco mais (mas isso fica entre nós, kkk).
+  <p>Hoje, eu não queria só te parabenizar. Queria também te agradecer.  
+  Por ser quem é. Pela forma como olha, fala, escuta, cuida.  
+  Por ser tão você. E, mesmo sem saber, ter feito tanto.</p>
 
-Enfim, te deixo essa homenagem neste dia tão especial. Mesmo de longe, é uma forma de estar presente — com o coração, com respeito e com verdade.`;
+  <p>Espero que esse novo capítulo da sua vida venha com tudo que te faz bem.  
+  E se depender de mim... estarei aqui — torcendo por você, celebrando você, admirando você. Sempre.</p>
 
-    let i = 0;
-    const speed = 30;
-    const target = document.getElementById("typed-text");
+  <p>Um gesto simples, mas feito com o coração.</p>
 
-    function typeWriter() {
-      if (i < texto.length) {
-        target.innerHTML += texto.charAt(i);
-        i++;
-        setTimeout(typeWriter, speed);
-      }
-    }
+  <blockquote>"Deus está no meio dela; não será abalada."<br>– Salmos 46:5</blockquote>
 
-    window.onload = function () {
-      setTimeout(typeWriter, 500);
-    };
+  <div class="assinatura">Com muito amor e carinho,<br>Isaque ✨</div>
+</div>
 
-    function toggleMusic() {
-      const music = document.getElementById("bg-music");
-      const btn = document.querySelector(".audio-control");
-
-      if (music.paused) {
-        music.play();
-        btn.innerHTML = "⏸ Pausar música";
-      } else {
-        music.pause();
-        btn.innerHTML = "▶️ Tocar música";
-      }
-    }
-  </script>
+<script>
+  function abrirCarta() {
+    document.getElementById('inicio').style.display = 'none';
+    document.getElementById('carta').style.display = 'block';
+    const audio = document.getElementById('musica');
+    audio.play().catch(e => console.log("Erro ao reproduzir áudio:", e));
+  }
+</script>
 
 </body>
 </html>
